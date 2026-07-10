@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 156 156">
+  <!-- The TradersLog — favicon.svg -->
+  <!-- Drop into public/ folder. Add to index.html:
+       <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  -->
+
+  <!-- Background -->
+  <rect width="156" height="156" rx="28" fill="#059669"/>
+
+  <!-- Simplified 3×3 heatmap grid — white tiles on emerald -->
+  <rect x="16" y="16" width="36" height="36" rx="6" fill="white" opacity="0.90"/>
+  <rect x="62" y="16" width="36" height="36" rx="6" fill="white" opacity="0.55"/>
+  <rect x="108" y="16" width="32" height="36" rx="6" fill="white" opacity="0.22"/>
+
+  <rect x="16" y="62" width="36" height="36" rx="6" fill="white" opacity="0.55"/>
+  <rect x="62" y="62" width="36" height="36" rx="6" fill="white" opacity="1.00"/>
+  <rect x="108" y="62" width="32" height="36" rx="6" fill="white" opacity="0.55"/>
+
+  <rect x="16" y="108" width="36" height="32" rx="6" fill="white" opacity="0.22"/>
+  <rect x="62" y="108" width="36" height="32" rx="6" fill="white" opacity="0.55"/>
+  <rect x="108" y="108" width="32" height="32" rx="6" fill="white" opacity="0.90"/>
+</svg>

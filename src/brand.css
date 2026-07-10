@@ -1,0 +1,226 @@
+/* ============================================================
+   The TradersLog — Brand Tokens
+   Drop this file into your React project's src/ folder
+   and import it in index.js or App.js:
+   import './brand.css';
+   ============================================================ */
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@600;700;800&family=Space+Grotesk:wght@300;400;500;600&display=swap');
+
+/* ── Color tokens ── */
+:root {
+  /* Brand greens */
+  --color-emerald:        #059669;
+  --color-green-mid:      #10B981;
+  --color-green-light:    #34D399;
+  --color-green-pale:     #F0FDF9;
+
+  /* Accent */
+  --color-amber:          #F59E0B;
+
+  /* Backgrounds */
+  --color-bg-light:       #F8FAF9;
+  --color-bg-dark:        #0F1A16;
+  --color-bg-dark-border: #1E3329;
+
+  /* Neutrals */
+  --color-neutral-100:    #F3F4F6;
+  --color-neutral-300:    #D1D5DB;
+  --color-neutral-400:    #9CA3AF;
+  --color-neutral-500:    #6B7280;
+  --color-neutral-900:    #111827;
+
+  /* Semantic */
+  --color-profit:         #059669;
+  --color-loss:           #E24B4A;
+  --color-warning:        #F59E0B;
+  --color-info:           #3B82F6;
+
+  /* Typography */
+  --font-display:         'Syne', sans-serif;
+  --font-body:            'Space Grotesk', sans-serif;
+  --font-mono:            'DM Mono', monospace;
+
+  /* Spacing scale */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* Border radius */
+  --radius-sm:   6px;
+  --radius-md:   10px;
+  --radius-lg:   16px;
+  --radius-xl:   24px;
+
+  /* Shadows */
+  --shadow-sm:  0 1px 3px rgba(0,0,0,0.06);
+  --shadow-md:  0 4px 12px rgba(0,0,0,0.08);
+  --shadow-lg:  0 8px 24px rgba(0,0,0,0.10);
+}
+
+/* ── Dark mode overrides ── */
+[data-theme="dark"] {
+  --color-bg-light:    #0F1A16;
+  --color-bg-surface:  #162420;
+  --color-neutral-900: #F0FDF4;
+  --color-neutral-400: #4B7A62;
+  --color-neutral-300: #1E3329;
+  --color-green-mid:   #34D399;
+  --color-emerald:     #34D399;
+}
+
+/* ── Base resets ── */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--color-neutral-900);
+  background: var(--color-bg-light);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Typography helpers ── */
+.font-display  { font-family: var(--font-display); }
+.font-body     { font-family: var(--font-body); }
+.font-mono     { font-family: var(--font-mono); }
+
+.text-emerald  { color: var(--color-emerald); }
+.text-amber    { color: var(--color-amber); }
+.text-profit   { color: var(--color-profit); }
+.text-loss     { color: var(--color-loss); }
+.text-muted    { color: var(--color-neutral-400); }
+
+/* ── Wordmark ── */
+.tl-wordmark {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+.tl-wordmark .tl-the {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.55em;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-emerald);
+  margin-bottom: 2px;
+}
+.tl-wordmark .tl-l {
+  color: var(--color-amber);
+}
+
+/* ── Card base ── */
+.card {
+  background: #fff;
+  border: 0.5px solid var(--color-neutral-300);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+}
+[data-theme="dark"] .card {
+  background: #162420;
+  border-color: var(--color-bg-dark-border);
+}
+
+/* ── P&L badge ── */
+.badge-profit {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  background: #ECFDF5;
+  color: var(--color-profit);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 99px;
+}
+.badge-loss {
+  background: #FEF2F2;
+  color: var(--color-loss);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 99px;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+/* ── Button ── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  background: var(--color-emerald);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+.btn-primary:hover  { background: #047857; }
+.btn-primary:active { transform: scale(0.98); }
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  background: transparent;
+  color: var(--color-neutral-900);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 400;
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  border: 0.5px solid var(--color-neutral-300);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.btn-ghost:hover { background: var(--color-neutral-100); }
+
+/* ── Stat card ── */
+.stat-card {
+  background: var(--color-green-pale);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+}
+.stat-card .stat-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-neutral-400);
+  margin-bottom: var(--space-2);
+}
+.stat-card .stat-value {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--color-neutral-900);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.stat-card .stat-sub {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-neutral-400);
+  margin-top: var(--space-2);
+}
