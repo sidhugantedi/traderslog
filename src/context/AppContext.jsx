@@ -23,27 +23,43 @@ export function AppProvider({ children }) {
 
   // ── auth ───────────────────────────────────────
   useEffect(() => {
-    // timeout fallback — show auth screen if Supabase takes >5s
-    const timeout = setTimeout(() => setLoading(false), 5000)
+    // timeout fallback — show auth screen if Supabase takes too long
+    const timeout = setTimeout(() => setLoading(false), 8000)
+
+    // Guard so we only load data once per sign-in.
+    let dataLoaded = false
+    // IMPORTANT: never call Supabase DB queries synchronously inside the
+    // onAuthStateChange callback — it holds an internal auth lock and the
+    // query would wait on that same lock, deadlocking. Defer with setTimeout
+    // so the load runs after the callback releases the lock.
+    const triggerLoad = (u) => {
+      if (dataLoaded) return
+      dataLoaded = true
+      setTimeout(() => {
+        loadAllData(u.id)
+          .catch(() => {})
+          .finally(() => { clearTimeout(timeout); setLoading(false) })
+      }, 0)
+    }
 
     sb.auth.getSession().then(({ data: { session } }) => {
-      clearTimeout(timeout)
       if (session) {
         setUser(session.user)
-        loadAllData(session.user.id).then(() => setLoading(false))
+        triggerLoad(session.user)
       } else {
+        clearTimeout(timeout)
         setLoading(false)
       }
     }).catch(() => { clearTimeout(timeout); setLoading(false) })
 
-    const { data: { subscription } } = sb.auth.onAuthStateChange(async (event, session) => {
-      if (event === 'SIGNED_IN' && session) {
+    const { data: { subscription } } = sb.auth.onAuthStateChange((event, session) => {
+      if ((event === 'SIGNED_IN' || event === 'INITIAL_SESSION') && session) {
         setUser(session.user)
-        await loadAllData(session.user.id)
-        setLoading(false)
+        triggerLoad(session.user)
       }
       if (event === 'TOKEN_REFRESHED' && session) setUser(session.user)
       if (event === 'SIGNED_OUT') {
+        dataLoaded = false
         setUser(null)
         setTrades([])
         setRulesData({ sections: [], answers: {} })
