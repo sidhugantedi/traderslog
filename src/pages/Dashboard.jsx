@@ -27,7 +27,7 @@ export default function Dashboard() {
   const worstCalc = calcs.length ? calcs.reduce((a, b) => a.total < b.total ? a : b) : null
 
   const hr = new Date().getHours()
-  const firstName = user?.user_metadata?.full_name?.split(' ')[0] || user?.email?.split('@')[0] || ''
+  const firstName = 'Sid'
   const greeting = (hr < 12 ? 'Good Morning' : hr < 17 ? 'Good Afternoon' : 'Good Evening') + (firstName ? ` ${firstName}` : '') + '!'
 
   const macroToday = mindset[today()]?.macro || 'None'
