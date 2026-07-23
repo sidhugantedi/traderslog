@@ -110,7 +110,9 @@ export function AppProvider({ children }) {
     const { data: { session } } = await sb.auth.getSession()
     if (!session) { showToast('Session expired — please log in again', true); return false }
 
-    const tradeWithUser = { ...trade, user_id: session.user.id }
+    // Strip UI-only fields that aren't database columns before upserting.
+    const { _isEdit, ...cleanTrade } = trade
+    const tradeWithUser = { ...cleanTrade, user_id: session.user.id }
     const { error } = await sb.from('trades').upsert(tradeWithUser, { onConflict: 'id' })
     if (error) { showToast('Failed to save trade', true); return false }
 
